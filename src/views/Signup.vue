@@ -5,7 +5,7 @@
         <v-row align="center" justify="center">
           <v-col cols="12" sm="8" md="8">
             <v-card class tile>
-              <v-window v-model="changeStep">
+              <v-window >
                 <v-window-item :value="1">
                   <v-row class="mx-0">
                     <v-col cols="12" md="4" class="custom__col">
@@ -61,7 +61,7 @@
                           <v-row justify="center" >
                              <v-col cols="8" class="pa-0 px-2" >
                               <v-text-field
-                                v-model="email"
+                                
                                 solo
                                 class="mt-2"
                                 label="Name"
@@ -74,7 +74,7 @@
                             </v-col>
                             <v-col cols="8" class="pa-0 px-2">
                               <v-text-field
-                                v-model="email"
+                                
                                 solo
                                 class=""
                                 label="Email"
