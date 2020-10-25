@@ -62,7 +62,7 @@
       <v-divider></v-divider>
       <template v-slot:append>
         <div class="pa-2 d-flex justify-center">
-          <v-btn dark outlined color="white" @click="logOut()">
+          <v-btn rounded dark outlined color="white" @click="logOut()">
             <span>Logout</span>
             <v-icon>mdi-exit-to-app</v-icon>
           </v-btn>
