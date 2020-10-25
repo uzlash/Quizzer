@@ -53,7 +53,7 @@
 
       <v-btn
         text
-        color="amber lighten-2"
+        class="amber"
       >
          Start Exam
       </v-btn>
