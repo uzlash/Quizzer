@@ -17,10 +17,27 @@ const routes = [
     path: "/library",
     name: "Library",
     component: () =>
-      import(/* webpackChunkName: "Library" */ "../views/Library.vue"),
+      import(/* webpackChunkName: "Library" */ "../views/LibraryView.vue"),
     meta: {
-      showHeader: true,
+      showHeader: true
     },
+    children: [
+      {
+        path: '',
+        component: () => import('../views/Library.vue'),
+        meta: {
+          showHeader: true
+        }
+      },
+      {
+        path: 'course/:id',
+        name: 'CourseView',
+        component: () => import('../views/CourseView.vue'),
+        meta: {
+          showHeader: false
+        }
+      },
+    ]
   },
   {
     path: "/exam",
