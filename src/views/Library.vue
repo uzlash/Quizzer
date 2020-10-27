@@ -39,7 +39,7 @@
             <v-card-subtitle class="pa-0 px-4"> Duration: {{ course.duration }} </v-card-subtitle>
             <v-card-actions>
               <v-spacer></v-spacer>
-              <v-btn @click="goToCourseView()" outlined color="orange"> Start Course </v-btn>
+              <v-btn @click="goToCourseView(course.id)" outlined color="orange"> Start Course </v-btn>
             </v-card-actions>
           </v-card>
         </v-col>
@@ -54,7 +54,7 @@ export default {
     courses: [
       {
         id: 1,
-        title: "Data Structures and Algorithms Analysis",
+        title: "Data Structures & Algorithms Analysis - 2020 (Updated)",
         image: require("../assets/data.png"),
         category: "Algorithms",
         author: 'Dennis Ritchie',
@@ -63,7 +63,7 @@ export default {
       },
       {
         id: 2,
-        title: "Cyber Security for Embedded Systems",
+        title: "Cyber Security for Embedded Systems - 2016",
         image: require("../assets/cyber.jpg"),
         category: "Cyber Security",
         author: 'Bjarne Stroustrup',
@@ -72,7 +72,7 @@ export default {
       },
       {
         id: 3,
-        title: "Introduction to Cloud Computing and Networking",
+        title: "Introduction to Cloud Computing and Networking - 2016",
         image: require("../assets/cloud.jpeg"),
         category: "Cloud Computing",
         author: 'James Gosling',
@@ -81,7 +81,7 @@ export default {
       },
       {
         id: 4,
-        title: "Server Scalability and Interoperability",
+        title: "Server Scalability & Interoperability - 2019",
         image: require("../assets/server.jpg"),
         category: "Dev Ops",
         author: 'Guido Van Rossum',
@@ -90,7 +90,7 @@ export default {
       },
       {
         id: 5,
-        title: "Cyber Security for Embedded Systems",
+        title: "Cyber Security for Embedded Systems - 2020 (Updated)",
         image: require("../assets/cyber.jpg"),
         category: "Cyber Security",
         author: 'Brenden Eich',
@@ -100,8 +100,8 @@ export default {
     ],
   }),
   methods: {
-    goToCourseView () {
-      this.$router.push('/library/course/1')
+    goToCourseView (id) {
+      this.$router.push(`/library/course/${id}`)
     }
   }
 };

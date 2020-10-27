@@ -9,6 +9,18 @@
         @click="drawer = !drawer"
         class="orange--text pa-5"
       ></v-app-bar-nav-icon>
+      <!-- <v-layout column align-center>
+        <v-flex class="mt-10 mb-8">
+          <span class="text-h4 white--text font-weight-light">
+            <span class="orange--text font-weight-black">Q</span>
+            <span class="font-weight-thin">uizzer</span>
+          </span>
+        </v-flex>
+      </v-layout> -->
+      <span class="text-h4 white--text font-weight-light">
+        <span class="orange--text font-weight-black">Q</span>
+        <span class="font-weight-thin">uizzer</span>
+      </span>
       <v-spacer></v-spacer>
       <div>
         <v-menu offset-y>
@@ -31,40 +43,45 @@
         </v-menu>
       </div>
     </v-app-bar>
-    <v-navigation-drawer v-model="drawer" dark app color="#2c3e50">
-      <v-layout column align-center>
-        <v-flex class="mt-10 mb-8">
-          <span class="text-h4 white--text font-weight-light">
-            <span class="orange--text font-weight-black">Q</span>
-            <span class="font-weight-thin">uizzer</span>
-          </span>
+    <v-navigation-drawer
+      mini-variant
+      mini-variant-width="100"
+      v-model="drawer"
+      dark
+      app
+      color="#2c3e50"
+    >
+      <!-- <div class="d-flex flex-column align-center justify-center"> -->
+        <v-layout column align-center>
+        <v-flex class="mt-10 mb-10">
         </v-flex>
       </v-layout>
-      <v-divider></v-divider>
-      <v-list>
-        <v-list-item
-          active-class="orange--text"
-          v-for="link in links"
-          :key="link.icon"
-          :to="link.route"
-        >
-          <v-list-item-action>
+        <v-divider class="mt-16"></v-divider>
+        <v-list flat>
+          <v-list-item
+            active-class="orange--text"
+            v-for="link in links"
+            :key="link.icon"
+            :to="link.route"
+          >
+            <!-- <v-list-item-action>
             <v-icon>{{ link.icon }}</v-icon>
-          </v-list-item-action>
-          <v-list-item-content>
-            <v-list-item-title class="font-weight-light">{{
-              link.text
-            }}</v-list-item-title>
-          </v-list-item-content>
-        </v-list-item>
-        <!-- <v-divider></v-divider> -->
-      </v-list>
-      <v-divider></v-divider>
+          </v-list-item-action> -->
+            <v-list-item-content>
+              <v-icon>{{ link.icon }}</v-icon>
+              <v-list-item-subtitle align="center" class="font-weight-light">{{
+                link.text
+              }}</v-list-item-subtitle>
+            </v-list-item-content>
+          </v-list-item>
+        </v-list>
+        <v-divider></v-divider>
+      <!-- </div> -->
       <template v-slot:append>
         <div class="pa-2 d-flex justify-center">
-          <v-btn rounded dark outlined color="white" @click="logOut()">
-            <span>Logout</span>
-            <v-icon>mdi-exit-to-app</v-icon>
+          <v-btn rounded dark text color="white" @click="logOut()">
+            <span class="font-weight-light">Logout</span>
+            <v-icon color="orange">mdi-exit-to-app</v-icon>
           </v-btn>
         </div>
       </template>
