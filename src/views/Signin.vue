@@ -11,39 +11,22 @@
                     <v-col cols="12" md="8">
                       <v-card-text class="mt-12">
                         <h1
-                          class="text-center font-weight-thin text-h4 orange-darken-2"
+                          class="text-center font-weight-thin text-h4 orange--text font-weight-thin"
                         >
                           SIGN IN
                         </h1>
-                        <div class="text-center mt-4">
-                          <v-btn class="mx-2" color="blue" fab small outlined>
-                            <v-icon>fab fa-facebook-f</v-icon>
-                          </v-btn>
-                          <v-btn class="mx-2" color="red" fab small outlined>
-                            <v-icon>fab fa-google-plus-g</v-icon>
-                          </v-btn>
-                          <v-btn
-                            class="mx-2"
-                            color="blue darken-4"
-                            fab
-                            small
-                            outlined
-                          >
-                            <v-icon>fab fa-linkedin-in</v-icon>
-                          </v-btn>
-                        </div>
                         <v-form @submit.prevent ref="form">
                           <v-row justify="center">
                             <v-col cols="8">
                               <v-text-field
                                 v-model="email"
-                                solo
+                                
                                 class="mt-4"
                                 label="Email"
                                 name="Email"
-                                prepend-icon="email"
+                                prepend-inner-icon="email"
                                 type="text"
-                                color="#00A368"
+                                color="#2C3E50"
                                 :rules="[rules.required, rules.email]"
                               />
                             </v-col>
@@ -54,11 +37,11 @@
                                   showPassword ? 'mdi-eye' : 'mdi-eye-off'
                                 "
                                 :type="showPassword ? 'text' : 'password'"
-                                solo
+                                
                                 label="Password"
                                 name="password"
-                                prepend-icon="lock"
-                                color="#00A368"
+                                prepend-inner-icon="lock"
+                                color="#2C3E50"
                                 @click:append="showPassword = !showPassword"
                                 :rules="[rules.required, rules.password]"
                               />
@@ -87,6 +70,24 @@
                           Create an account, and start your quiz
                           with us.
                         </h3>
+                        <div class="text-center mt-4">
+                          <v-btn class="mx-2" color="blue" fab small outlined>
+                            <v-icon>fab fa-facebook-f</v-icon>
+                          </v-btn>
+                          <v-btn class="mx-2" color="red" fab small outlined>
+                            <v-icon>fab fa-google-plus-g</v-icon>
+                          </v-btn>
+                          <v-btn
+                            class="mx-2"
+                            color="blue darken-4"
+                            fab
+                            small
+                            outlined
+                          >
+                            <v-icon>fab fa-linkedin-in</v-icon>
+                          </v-btn>
+                         
+                        </div>
                         <div class="text-center mt-4">
                           <v-btn
                             class="text-capitalize"
