@@ -2,15 +2,20 @@
   <div class="videoView grey darken-4 pt-16">
     <v-row no-gutters class="d-flex">
       <v-col cols="12" md="8" lg="8">
-        <div>
-          <!-- <video-player
-            class="video-js vjs-fill video-player-box vjs-big-play-centered"
-            :options="videoOptions"
-          /> -->
-          <vue-core-video-player
-            height="500"
-            cover="https://www.telcoma.in/en/wp-content/uploads/2019/08/The-Complete-Junior-to-Senior-Web-Developer-Roadmap.jpg"
-            src="https://media.vued.vanthink.cn/sparkle_your_name_am360p.mp4"
+        <video
+          @pause="pause"
+          @timeupdate="timeUpdate"
+          width="100%"
+          height="100%"
+          :src="current.src"
+          class="black"
+          controls
+        ></video>
+        <!-- <video :src="current.src" autoplay></video> -->
+        <!-- <vue-core-video-player
+            min-height="500"
+            :cover="course.image"
+            :src="current.src"
             @play="play"
             @change="change"
             @durationchange="durationChange"
@@ -21,30 +26,32 @@
             @seeked="seeked"
             @seeking="seeking"
             @timeupdate="timeUpdate"
-          ></vue-core-video-player>
-          <!-- src="https://media.vued.vanthink.cn/sparkle_your_name_am360p.mp4" -->
-        </div>
+          ></vue-core-video-player> -->
+        <!-- src="https://media.vued.vanthink.cn/sparkle_your_name_am360p.mp4" -->
       </v-col>
       <v-col cols="12" md="4" lg="4">
-        <div class="d-flex flex-column white--text grey darken-3">
+        <div class="d-flex flex-column white--text primary">
           <div class="px-4 py-2">
             <h2 class="text-h6 font-weight-light">
-              The Complete Web Developer Mastery Course 2020
+              {{ course.title }}
             </h2>
-            <span class="font-weight-light">By John Doe</span>
+            <span class="font-weight-light">{{ course.author }}</span>
           </div>
           <v-divider class="grey darken-1"></v-divider>
           <v-card
-            outlined
-            flat
-            height="410"
+            tile
+            max-height="512"
             color="transparent"
             class="cutom__card--overflow"
           >
             <!-- :to="{ name: 'CourseView', params: { id: item.id } }" -->
-            <v-list v-for="item in course" :key="item.id" class="py-0">
+            <v-list
+              v-for="item in course.courseData"
+              :key="item.id"
+              class="py-0"
+            >
               <v-list-item
-                :to="{ name: 'CourseView', params: { id: item.id } }"
+                @click="changeVideo(item)"
                 active-class="orange--text"
                 class="px-2 grey lighten-4"
               >
@@ -90,124 +97,21 @@
 </template>
 
 <script>
+// let singleCourse = DATA[this.courseId]
+import courseApi from "../services/courseApi";
 export default {
+  props: ["id"],
   data: () => ({
-    course: [
-      {
-        id: 1,
-        name: "Introduction to the Web",
-        time: "0:59",
-        src: "https://media.vued.vanthink.cn/sparkle_your_name_am360p.mp4",
-      },
-      {
-        id: 2,
-        name: "HTML5",
-        time: "1:59",
-        src:
-          "https://media.vued.vanthink.cn/the_garden_of_words_trailer_english__1080p.mp4",
-      },
-      {
-        id: 3,
-        name: "CSS3",
-        time: "2:59",
-        src:
-          "https://media.vued.vanthink.cn/y2mate.com%20-%20Weathering%20With%20You%20%5BOfficial%20Subtitled%20Trailer,%20GKIDS%5D_Q6iK6DjV_iE_1080p.mp4",
-      },
-      {
-        id: 4,
-        name: "JavaScript",
-        time: "5:59",
-        src: "https://media.vued.vanthink.cn/CJ7%20-%20Trailer.mp4",
-      },
-      {
-        id: 5,
-        name: "APIs",
-        time: "0:49",
-        src:
-          "https://media.vued.vanthink.cn/5%20Centimeters%20Per%20Second%20Trailer%20HD.mp4",
-      },
-      {
-        id: 6,
-        name: "React.js + Redux",
-        time: "5:05",
-        src: "https://media.vued.vanthink.cn/sparkle_your_name_am360p.mp4",
-      },
-      {
-        id: 7,
-        name: "Backend Introduction",
-        time: "1:09",
-        src:
-          "https://media.vued.vanthink.cn/y2mate.com%20-%20Weathering%20With%20You%20%5BOfficial%20Subtitled%20Trailer,%20GKIDS%5D_Q6iK6DjV_iE_1080p.mp4",
-      },
-      {
-        id: 8,
-        name: "Node.js",
-        time: "2:00",
-        src: "https://media.vued.vanthink.cn/CJ7%20-%20Trailer.mp4",
-      },
-      {
-        id: 9,
-        name: "Express.js",
-        time: "5:19",
-        src: "https://media.vued.vanthink.cn/CJ7%20-%20Trailer.mp4",
-      },
-      {
-        id: 10,
-        name: "Databases Introduction",
-        time: "3:40",
-        src:
-          "https://media.vued.vanthink.cn/5%20Centimeters%20Per%20Second%20Trailer%20HD.mp4",
-      },
-      {
-        id: 11,
-        name: "MongoDB",
-        time: "1:53",
-        src: "https://media.vued.vanthink.cn/sparkle_your_name_am360p.mp4",
-      },
-      {
-        id: 12,
-        name: "Mongoose",
-        time: "3:20",
-        src:
-          "https://media.vued.vanthink.cn/y2mate.com%20-%20Weathering%20With%20You%20%5BOfficial%20Subtitled%20Trailer,%20GKIDS%5D_Q6iK6DjV_iE_1080p.mp4",
-      },
-      {
-        id: 13,
-        name: "Authentication with JWT",
-        time: "1:20",
-        src: "https://media.vued.vanthink.cn/CJ7%20-%20Trailer.mp4",
-      },
-      {
-        id: 14,
-        name: "Hooking up the frontend and backend",
-        time: "4:04",
-        src:
-          "https://media.vued.vanthink.cn/5%20Centimeters%20Per%20Second%20Trailer%20HD.mp4",
-      },
-      {
-        id: 15,
-        name: "Deploying to Heroku",
-        time: "2:00",
-        src: "https://media.vued.vanthink.cn/sparkle_your_name_am360p.mp4",
-      },
-      {
-        id: 16,
-        name: "Summary",
-        time: "4:04",
-        src:
-          "https://media.vued.vanthink.cn/the_garden_of_words_trailer_english__1080p.mp4",
-      },
-    ],
+    course: [],
+    current: {},
+    clicked: false
   }),
-  computed: {
-    videoId() {
-      return this.$route.params.id;
-    },
-  },
+  // computed: {
+  //   courseId() {
+  //     return this.$route.params.id;
+  //   },
+  // },
   methods: {
-    // changeVideo() {
-    //   location.href = location.href + "/" + this.$route.params.id;
-    // },
     change(e) {
       console.log("CHANGE EVENT", e);
     },
@@ -238,9 +142,28 @@ export default {
     timeUpdate(e) {
       console.log("TIME UPDATE EVENT -- CURRENT TIME", e.target.currentTime);
     },
+    changeVideo(e) {
+      console.log(e);
+      this.current = e
+      this.clicked = true
+    },
   },
-  created() {
-    console.log(this.videoId);
+  mounted() {
+    console.log("LOCATION", location);
+    courseApi
+      .fetchSingleCourse(this.id)
+      .then((response) => {
+        console.log("Response", response.data.payload);
+        this.course = response.data.payload;
+        console.log("Course", this.course);
+        this.current = this.course.courseData[0];
+        console.log("CURRENT", this.current);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  },
+  beforeUpdate() {
   },
 };
 </script>

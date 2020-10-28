@@ -3,11 +3,12 @@ import App from './App.vue'
 import router from './router'
 import store from './store'
 import vuetify from './plugins/vuetify'
+// import axios from 'axios'
 
 import VueCoreVideoPlayer from 'vue-core-video-player'
 
 Vue.use(VueCoreVideoPlayer)
-
+// axios.defaults.baseURL = 'http://localhost:3000/course'
 // import VueVideoPlayer from 'vue-video-player'
 // require videojs style
 // import 'video.js/dist/video-js.css'

@@ -33,6 +33,7 @@ const routes = [
         path: 'course/:id',
         name: 'CourseView',
         component: () => import('../views/CourseView.vue'),
+        props: true,
         meta: {
           showHeader: false
         }
