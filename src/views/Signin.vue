@@ -71,17 +71,15 @@
                           with us.
                         </h3>
                         <div class="text-center mt-4">
-                          <v-btn class="mx-2" color="blue" fab small outlined>
+                          <v-btn class="" color="blue" outlined>
                             <v-icon>fab fa-facebook-f</v-icon>
                           </v-btn>
-                          <v-btn class="mx-2" color="red" fab small outlined>
+                          <v-btn class="mx-2" color="red" outlined>
                             <v-icon>fab fa-google-plus-g</v-icon>
                           </v-btn>
                           <v-btn
-                            class="mx-2"
+                            class=""
                             color="blue darken-4"
-                            fab
-                            small
                             outlined
                           >
                             <v-icon>fab fa-linkedin-in</v-icon>
