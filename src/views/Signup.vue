@@ -3,7 +3,7 @@
     <v-main class="grey lighten-4 custom__container custom__bg">
       <v-container class="fill-height" fluid>
         <v-row align="center" justify="center">
-          <v-col cols="12" sm="8" md="8">
+          <v-col cols="12" sm="8" md="8" class="pa-0">
             <v-card class tile>
               <v-window>
                 <v-window-item :value="1">
@@ -11,28 +11,32 @@
                     <v-col cols="12" md="4" class="custom__col">
                       <v-card-text class="white--text mt-15">
                         <v-card class="text-center" flat color="#2C3E50"  height="100">
-                          
-                          <span class="text-h4 white--text font-weight-light mt-8 ">
+                          <div >
+                            <v-card-text class="mt-5">
+                               <span class="text-h4 white--text font-weight-light mt-8 ">
                             <span class="orange--text font-weight-black"
                               >Q</span
                             >
                             <span class="font-weight-thin">uizzer</span>
                           </span>
+                            </v-card-text>
+                         
+                          </div>
                         </v-card>
                        
                         <div class="text-center mt-4">
                           <p class="blue--text">use any existing one profile</p>
-                          <v-btn class="mx-2" color="blue" fab small outlined>
+                          <v-btn class="" color="blue"   outlined>
                             <v-icon>fab fa-facebook-f</v-icon>
                           </v-btn>
-                          <v-btn class="mx-2" color="red" fab small outlined>
+                          <v-btn class="mx-2" color="red"  outlined>
                             <v-icon>fab fa-google-plus-g</v-icon>
                           </v-btn>
                           <v-btn
-                            class="mx-2"
+                            class=""
                             color="blue darken-4"
-                            fab
-                            small
+                            
+                            
                             outlined
                           >
                             <v-icon>fab fa-linkedin-in</v-icon>
@@ -60,6 +64,7 @@
                                 prepend-inner-icon="person"
                                 type="text"
                                 color="#2C3E50"
+                                :rules="[rules.required, rules.counter]"
                               />
                             </v-col>
                             <v-col cols="8" class="pa-0 px-2">
@@ -70,14 +75,17 @@
                                 prepend-inner-icon="email"
                                 type="text"
                                 color="#2C3E50"
+                                :rules="[rules.required, rules.email]"
                               />
                             </v-col>
                             <v-col cols="8" class="pa-0 px-2">
                               <v-text-field
                                 label="Password"
+                                v-model="password"
                                 name="password"
                                 prepend-inner-icon="mdi-key"
                                 color="#2C3E50"
+                                :rules="[rules.required, rules.password]"
                               />
                             </v-col>
 
@@ -85,8 +93,15 @@
                               <v-text-field
                                 label="confirm password"
                                 name="confirm password"
+                                v-model="confirmPassword"
                                 prepend-inner-icon="mdi-key"
                                 color="#2C3E50"
+                                :rules="[
+                                    rules.required,
+                                    rules.password,
+                                    passwordConfirmationRule,
+                                  ]"
+                               
                               />
                             </v-col>
                             <v-col cols="8" class="pa-0 px-2">
@@ -95,6 +110,7 @@
                                 name="phone"
                                 prepend-inner-icon="mdi-cellphone"
                                 color="#2C3E50"
+                                :rules="[rules.required]"
                               />
                               <v-checkbox label="I agree the terms and conditions" class="pa-0 px-2" ></v-checkbox>
                             </v-col>
@@ -159,8 +175,29 @@
 // import axios from "axios";
 export default {
   components: {},
-  data: () => ({}),
+  data: () => ({
+    password: "",
+    confirmpassword: "",
+
+    rules: {
+      required: (v) => !!v || "Field is required",
+      counter: (v) => (v && v.length >= 3) || "Minimum length is 4 characters",
+      email: (value) => {
+        const pattern = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        return pattern.test(value) || "Invalid e-mail.";
+      },
+      password: (value) =>
+        (value && value.length >= 6) || "Minimum length is 6 characters",
+    },
+    
+  }),
   methods: {},
+  computed: {
+    passwordConfirmationRule() {
+      return () =>
+        this.password === this.confirmPassword || "Password must match";
+    },
+  }
 };
 </script>
 
